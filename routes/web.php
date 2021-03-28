@@ -13,12 +13,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\Admin\NewsController as Admin_NewsController;
+use App\Http\Controllers\Admin\CategoryController as Admin_CategoryController;
+
 Route::get('/', function () {
     return 'welcome';
 });
-Route::get('/news', function () {
-    return 'news';
+
+Route::group(['prefix' => 'admin', 'name' => 'admin.'], function () {
+    Route::resources([
+        '/news' => Admin_NewsController::class,
+        '/category' => Admin_CategoryController::class,
+    ]);
 });
-Route::get('/admin', function () {
-    return 'admin';
-});
+
+Route::get('/news', [NewsController::class, 'index'])
+	->name('news');
+
+Route::get('/news/show/{id}', [NewsController::class, 'show'])
+	->where('id', '\d+')
+	->name('news.show');
