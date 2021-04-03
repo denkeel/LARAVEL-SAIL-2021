@@ -13,7 +13,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        return "NewsController";
+        return view('news/index', ['articles' => $this->articles]);
     }
 
     /**
@@ -45,7 +45,7 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        return "news $id";
+        return view('news/article', ['id' => $id]);
     }
 
     /**
