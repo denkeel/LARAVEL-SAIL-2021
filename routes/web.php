@@ -18,7 +18,7 @@ use App\Http\Controllers\Admin\NewsController as Admin_NewsController;
 use App\Http\Controllers\Admin\CategoryController as Admin_CategoryController;
 
 Route::get('/', function () {
-    return 'welcome';
+    return redirect()->route('news');
 });
 
 Route::group(['prefix' => 'admin', 'name' => 'admin.'], function () {
@@ -31,6 +31,6 @@ Route::group(['prefix' => 'admin', 'name' => 'admin.'], function () {
 Route::get('/news', [NewsController::class, 'index'])
 	->name('news');
 
-Route::get('/news/show/{id}', [NewsController::class, 'show'])
+Route::get('/news/article/{id}', [NewsController::class, 'show'])
 	->where('id', '\d+')
-	->name('news.show');
+	->name('news/article');
