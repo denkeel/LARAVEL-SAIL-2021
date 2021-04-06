@@ -7,19 +7,26 @@
     <x-site-header />
 
     <!-- Text Header -->
-    <header class="w-full container mx-auto">
+    {{--<header class="w-full container mx-auto">
         <div class="flex flex-col items-center py-12">
-            <a class="font-bold text-gray-800 uppercase hover:text-gray-700 text-5xl" href="#">
-                Minimal Blog
-            </a>
-            <p class="text-lg text-gray-600">
-                Lorem Ipsum Dolor Sit Amet
-            </p>
-        </div>
+            <a href="{{ route('news') }}">
+    <div class="flex flex-row justify-center h-10">
+        <img class="pr-2" src="{{ asset('img/logo1.svg') }}" alt="" srcset="">
+        <img class="py-2" src="{{ asset('img/logo2.svg') }}" alt="" srcset="">
+    </div>
+    </a>
+    <a class="font-bold text-gray-800 uppercase hover:text-gray-700 text-5xl">
+        Minimal Blog
+    </a>
+    <p class="text-lg text-gray-600">
+        Lorem Ipsum Dolor Sit Amet
+    </p>
+    </div>
     </header>
-
+    --}}
+    
     <!-- Topic Nav -->
-    <nav class="w-full py-4 border-t border-b bg-gray-100" x-data="{ open: false }">
+    <nav class="w-full py-1 border-t shadow-md border-b  bg-gray-50" x-data="{ open: false }">
         <div class="block sm:hidden">
             <a href="#" class="block md:hidden text-base font-bold uppercase text-center flex justify-center items-center" @click="open = !open">
                 Topics <i :class="open ? 'fa-chevron-down': 'fa-chevron-up'" class="fas ml-2"></i>
@@ -27,16 +34,15 @@
         </div>
         <div :class="open ? 'block': 'hidden'" class="w-full flex-grow sm:flex sm:items-center sm:w-auto">
             <div class="w-full container mx-auto flex flex-col sm:flex-row items-center justify-center text-sm font-bold uppercase mt-0 px-6 py-2">
-                <a href="#" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Technology</a>
-                <a href="#" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Automotive</a>
-                <a href="#" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Finance</a>
-                <a href="#" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Politics</a>
-                <a href="#" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Culture</a>
-                <a href="#" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Sports</a>
+                <a href="#" class="hover:bg-gray-700 rounded py-1 hover:text-white px-4 mx-2">Technology</a>
+                <a href="#" class="hover:bg-gray-700 rounded py-1 hover:text-white px-4 mx-2">Automotive</a>
+                <a href="#" class="hover:bg-gray-700 rounded py-1 hover:text-white px-4 mx-2">Finance</a>
+                <a href="#" class="hover:bg-gray-700 rounded py-1 hover:text-white px-4 mx-2">Politics</a>
+                <a href="#" class="hover:bg-gray-700 rounded py-1 hover:text-white px-4 mx-2">Culture</a>
+                <a href="#" class="hover:bg-gray-700 rounded py-1 hover:text-white px-4 mx-2">Sports</a>
             </div>
         </div>
     </nav>
-
 
     <div class="container mx-auto flex flex-wrap py-6">
 
@@ -45,7 +51,7 @@
         <!-- Sidebar Section -->
         <aside class="w-full md:w-1/3 flex flex-col items-center px-3">
 
-            <div class="w-full bg-white shadow flex flex-col my-4 p-6">
+            <div class="w-full bg-white shadow-lg flex flex-col rounded-lg my-4 p-6">
                 <p class="text-xl font-semibold pb-5">About Us</p>
                 <p class="pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mattis est eu odio sagittis tristique. Vestibulum ut finibus leo. In hac habitasse platea dictumst.</p>
                 <a href="#" class="w-full bg-blue-800 text-white font-bold text-sm uppercase rounded hover:bg-blue-700 flex items-center justify-center px-2 py-3 mt-4">
@@ -53,7 +59,7 @@
                 </a>
             </div>
 
-            <div class="w-full bg-white shadow flex flex-col my-4 p-6">
+            <div class="w-full bg-white shadow-lg flex flex-col rounded-lg my-4 p-6">
                 <p class="text-xl font-semibold pb-5">Instagram</p>
                 <div class="grid grid-cols-3 gap-3">
                     <img class="hover:opacity-75" src="https://source.unsplash.com/collection/1346951/150x150?sig=1">
@@ -73,7 +79,10 @@
 
         </aside>
     </div>
-    
+
+    <x-site-footer />
+
+    {{--  
     <div class="relative w-full flex items-center invisible md:visible md:pb-12" x-data="getCarouselData()">
         <button class="absolute bg-blue-800 hover:bg-blue-700 text-white text-2xl font-bold hover:shadow rounded-full w-16 h-16 ml-12" x-on:click="decrement()">
             &#8592;
@@ -85,10 +94,7 @@
             &#8594;
         </button>
     </div>
-
-    <x-site-footer />
-
-
+    
     <script>
         function getCarouselData() {
             return {
@@ -113,6 +119,7 @@
             }
         }
     </script>
+    --}}
 
 </body>
 @endsection

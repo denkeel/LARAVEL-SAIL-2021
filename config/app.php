@@ -175,6 +175,21 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /*
+         * Debugbar
+         */
+        Barryvdh\Debugbar\ServiceProvider::class,
+
+        /*
+         * MongoDB
+         */
+        Jenssegers\Mongodb\MongodbServiceProvider::class,
+
+        /*
+         * Ignition
+         */
+        Facade\Ignition\IgnitionServiceProvider::class,
+
     ],
 
     /*
@@ -227,7 +242,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
     ],
 
 ];

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\News;
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
@@ -13,7 +14,10 @@ class NewsController extends Controller
      */
     public function index()
     {
-        return view('news/index', ['articles' => $this->articles]);
+        //dd(date_default_timezone_get());
+        $articles = (new News())->getNews();
+
+        return view('news/index', ['articles' => $articles]);
     }
 
     /**
@@ -45,7 +49,9 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        return view('news/article', ['id' => $id]);
+        $article = (new News())->getNewsById($id);
+
+        return view('news/article', ['article' => $article]);
     }
 
     /**
