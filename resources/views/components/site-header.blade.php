@@ -4,7 +4,7 @@
     <nav>
       <ul class="flex items-center align-center justify-between font-medium text-sm text-black uppercase no-underline">
         <li><a class="hover:text-gray-600 px-4" href="#">Login</a></li>
-        <li><a class="hover:text-gray-600 px-4" href="{{ route('admin/news/index') }}">Admin</a></li>
+        <li><a class="hover:text-gray-600 px-4" href="{{ route('admin') }}">Admin</a></li>
       </ul>
     </nav>
 
