@@ -19,7 +19,7 @@
         <x-readable-date-c :dateIso8601="$article['date']" />
       </p>
       <a href=" {{ route('news/article', ['id' => $article['_id']]) }} " class="pb-6">{{ $article['content']}}</a>
-      <a href=" {{ route('news/article', ['id' => $article['_id']]) }} " class="uppercase text-gray-800 hover:text-black">Continue Reading <i class="fas fa-arrow-right"></i></a>
+      <a href=" {{ route('news/article', ['id' => $article['_id']]) }} " class="uppercase text-gray-800 hover:text-black">Continue Reading <i class="ml-1 fas fa-arrow-right"></i></a>
     </div>
   </article>
   @endforeach

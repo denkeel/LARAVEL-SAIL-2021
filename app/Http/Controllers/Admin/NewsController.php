@@ -43,13 +43,12 @@ class NewsController extends Controller
         $newsOne = array_slice($request->all(), 2);
         $newsOne['author'] = 'Unknown';
 
-        $date = date_create('now');
-        $date->setTimeZone('Asia/Singapore');
+        $date = date_create('now', timezone_open('Europe/Moscow'));
         $dateIso8601 = $date->format(DateTime::ISO8601);
 
         $newsOne['date'] = $dateIso8601;
 
-        DB::collection('news')->insert($newsOne);
+        (new News())->insertNewsById($newsOne);
 
         return redirect()->route('admin/news/create');
     }
@@ -73,7 +72,9 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        return view('admin/news/edit');
+        $article = (new News())->getNewsById($id);
+
+        return view('admin/news/edit', ['article' => $article]);
     }
 
     /**
@@ -85,11 +86,16 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd($request->all());
+        $newsOne = array_slice($request->all(), 2);
+        $newsOne['author'] = 'Unknown';
 
-        return redirect()->route('admin/news/edit', ['id' => 5]);
+        (new News())->updateNewsById($id, $newsOne);
+
+        $request->session()->flash('done', true);
+
+        return redirect()->route('admin/news/edit', ['id' => $id]);
     }
-    
+
     /**
      * Remove the specified resource from storage.
      *
@@ -98,8 +104,10 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        dd('kek');
-        
-        return redirect()->route('admin/news/index');
+        (new News())->destroyNewsById($id);
+
+        return response()->json([
+            'deleted' => $id,
+        ]);
     }
 }

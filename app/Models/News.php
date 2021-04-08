@@ -19,4 +19,16 @@ class News extends Model
     public function getNewsById(string $id) {
         return DB::collection($this->tableName)->find($id);
     }
+
+    public function insertNewsById($newsOne) {
+        return DB::collection($this->tableName)->insert($newsOne);
+    }
+
+    public function updateNewsById(string $id, $newsOne) {
+        return DB::collection($this->tableName)->where('_id', $id)->update($newsOne);;
+    }
+
+    public function destroyNewsById(string $id) {
+        return DB::collection($this->tableName)->where('_id', $id)->delete();
+    }
 }

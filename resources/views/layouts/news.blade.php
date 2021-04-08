@@ -4,7 +4,6 @@
 
 <body class="bg-white font-family-karla">
 
-    <x-site-header />
 
     <!-- Text Header -->
     {{--<header class="w-full container mx-auto">
@@ -26,20 +25,21 @@
     --}}
     
     <!-- Topic Nav -->
-    <nav class="w-full py-1 border-t shadow-md border-b  bg-gray-50" x-data="{ open: false }">
+    <nav class="w-full shadow bg-gray-50" x-data="{ open: false }">
+    <x-site-header />
         <div class="block sm:hidden">
             <a href="#" class="block md:hidden text-base font-bold uppercase text-center flex justify-center items-center" @click="open = !open">
                 Topics <i :class="open ? 'fa-chevron-down': 'fa-chevron-up'" class="fas ml-2"></i>
             </a>
         </div>
-        <div :class="open ? 'block': 'hidden'" class="w-full flex-grow sm:flex sm:items-center sm:w-auto">
+        <div :class="open ? 'block': 'hidden'" class="border-t py-1 w-full flex-grow sm:flex sm:items-center sm:w-auto">
             <div class="w-full container mx-auto flex flex-col sm:flex-row items-center justify-center text-sm font-bold uppercase mt-0 px-6 py-2">
-                <a href="#" class="hover:bg-gray-700 rounded py-1 hover:text-white px-4 mx-2">Technology</a>
-                <a href="#" class="hover:bg-gray-700 rounded py-1 hover:text-white px-4 mx-2">Automotive</a>
-                <a href="#" class="hover:bg-gray-700 rounded py-1 hover:text-white px-4 mx-2">Finance</a>
-                <a href="#" class="hover:bg-gray-700 rounded py-1 hover:text-white px-4 mx-2">Politics</a>
-                <a href="#" class="hover:bg-gray-700 rounded py-1 hover:text-white px-4 mx-2">Culture</a>
-                <a href="#" class="hover:bg-gray-700 rounded py-1 hover:text-white px-4 mx-2">Sports</a>
+                <a href="#" class="hover:bg-gray-900 rounded py-1 hover:text-white px-4 mx-2">Technology</a>
+                <a href="#" class="hover:bg-gray-900 rounded py-1 hover:text-white px-4 mx-2">Automotive</a>
+                <a href="#" class="hover:bg-gray-900 rounded py-1 hover:text-white px-4 mx-2">Finance</a>
+                <a href="#" class="hover:bg-gray-900 rounded py-1 hover:text-white px-4 mx-2">Politics</a>
+                <a href="#" class="hover:bg-gray-900 rounded py-1 hover:text-white px-4 mx-2">Culture</a>
+                <a href="#" class="hover:bg-gray-900 rounded py-1 hover:text-white px-4 mx-2">Sports</a>
             </div>
         </div>
     </nav>
