@@ -16,21 +16,38 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\Admin\NewsController as Admin_NewsController;
 use App\Http\Controllers\Admin\CategoryController as Admin_CategoryController;
+use Illuminate\Support\Facades\DB;
 
 Route::get('/', function () {
     return redirect()->route('news');
 });
 
-Route::group(['prefix' => 'admin', 'name' => 'admin.'], function () {
-    Route::resources([
-        '/news' => Admin_NewsController::class,
-        '/category' => Admin_CategoryController::class,
-    ]);
+Route::group(['prefix' => 'admin/news', 'as' => 'admin/news/'], function () {
+    Route::get('/', [Admin_NewsController::class, 'index'])->name('index');
+    Route::get('/create', [Admin_NewsController::class, 'create'])->name('create');
+    Route::post('/', [Admin_NewsController::class, 'store'])->name('store');
+    Route::delete('/{id}', [Admin_NewsController::class, 'destroy'])->name('destroy');
+    Route::put('/{id}', [Admin_NewsController::class, 'update'])->name('update');
+    Route::get('/{id}', [Admin_NewsController::class, 'show'])->name('show');
+    Route::get('/{id}/edit', [Admin_NewsController::class, 'edit'])->name('edit');
+});
+
+Route::group(['prefix' => 'admin/category', 'as' => 'admin/category/'], function () {
+    Route::get('/', [Admin_CategoryController::class, 'index'])->name('index');
+    Route::get('/create', [Admin_CategoryController::class, 'create'])->name('create');
+    Route::post('/', [Admin_CategoryController::class, 'store'])->name('store');
+    Route::get('/{id}', [Admin_CategoryController::class, 'show'])->name('show');
+    Route::get('/{id}/edit', [Admin_CategoryController::class, 'edit'])->name('edit');
+    Route::put('/{id}', [Admin_CategoryController::class, 'update'])->name('update');
+    Route::delete('/{id}', [Admin_CategoryController::class, 'destroy'])->name('destroy');
 });
 
 Route::get('/news', [NewsController::class, 'index'])
-	->name('news');
+    ->name('news');
 
 Route::get('/news/article/{id}', [NewsController::class, 'show'])
-	->where('id', '\d+')
-	->name('news/article');
+    ->name('news/article');
+
+Route::get('/testdb', function() {
+    return (DB::collection('news')->get());
+});
