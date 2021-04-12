@@ -1,10 +1,10 @@
 <!-- Top Bar Nav -->
-<nav class="w-full py-5 bg-white flex-col shadow-md">
+<nav class="w-full py-5 bg-white flex-col">
   <div class="w-full container mx-auto flex items-center">
     <nav>
       <ul class="flex items-center align-center justify-between font-medium text-sm text-black uppercase no-underline">
         <li><a class="hover:text-gray-600 px-4" href="#">Login</a></li>
-        <li><a class="hover:text-gray-600 px-4" href="{{ route('admin/news/index') }}">Admin</a></li>
+        <li><a class="hover:text-gray-600 px-4" href="{{ route('admin') }}">Admin</a></li>
       </ul>
     </nav>
 

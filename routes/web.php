@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\Admin\NewsController as Admin_NewsController;
-use App\Http\Controllers\Admin\CategoryController as Admin_CategoryController;
+use App\Http\Controllers\Admin\CategoriesController as Admin_CategoriesController;
 use Illuminate\Support\Facades\DB;
 
 Route::get('/', function () {
@@ -32,18 +32,22 @@ Route::group(['prefix' => 'admin/news', 'as' => 'admin/news/'], function () {
     Route::get('/{id}/edit', [Admin_NewsController::class, 'edit'])->name('edit');
 });
 
-Route::group(['prefix' => 'admin/category', 'as' => 'admin/category/'], function () {
-    Route::get('/', [Admin_CategoryController::class, 'index'])->name('index');
-    Route::get('/create', [Admin_CategoryController::class, 'create'])->name('create');
-    Route::post('/', [Admin_CategoryController::class, 'store'])->name('store');
-    Route::get('/{id}', [Admin_CategoryController::class, 'show'])->name('show');
-    Route::get('/{id}/edit', [Admin_CategoryController::class, 'edit'])->name('edit');
-    Route::put('/{id}', [Admin_CategoryController::class, 'update'])->name('update');
-    Route::delete('/{id}', [Admin_CategoryController::class, 'destroy'])->name('destroy');
+Route::group(['prefix' => 'admin/categories', 'as' => 'admin/categories/'], function () {
+    Route::get('/', [Admin_CategoriesController::class, 'index'])->name('index');
+    Route::get('/create', [Admin_CategoriesController::class, 'create'])->name('create');
+    Route::post('/', [Admin_CategoriesController::class, 'store'])->name('store');
+    Route::get('/{id}', [Admin_CategoriesController::class, 'show'])->name('show');
+    Route::get('/{id}/edit', [Admin_CategoriesController::class, 'edit'])->name('edit');
+    Route::put('/{id}', [Admin_CategoriesController::class, 'update'])->name('update');
+    Route::delete('/{id}', [Admin_CategoriesController::class, 'destroy'])->name('destroy');
 });
 
+Route::get('admin', function () {
+    return redirect()->route('admin/news/index');
+})->name('admin');
+
 Route::get('/news', [NewsController::class, 'index'])
-    ->name('news');
+->name('news');
 
 Route::get('/news/article/{id}', [NewsController::class, 'show'])
     ->name('news/article');
