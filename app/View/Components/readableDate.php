@@ -15,22 +15,22 @@ class readableDate extends Component
      *
      * @return void
      */
-    public function __construct(string $dateIso8601)
+    public function __construct($date)
     {
-        $this->parsedDate = $this->parse($dateIso8601);
-        //dd($this->parsedDate);
+        $this->parsedDate = $this->parse($date);
     }
 
-    private function parse($dateIso8601)
+    private function parse($date)
     {
-        $date = DateTime::createFromFormat(DateTime::ISO8601, $dateIso8601);
-        
-        $month = $date->format('F');
-        $day = $date->format('j'); //25
-        $day = (new NumberFormatter('en_US', NumberFormatter::ORDINAL))->format($day); //25th
-        $year = $date->format('Y');
+        //$date = DateTime::createFromFormat(DateTime::RFC3339_EXTENDED, $date);
+        //dd($date->format('F'));
+        //$month = $date->format('F');
+        //$day = $date->format('j'); //25
+        //$day = (new NumberFormatter('en_US', NumberFormatter::ORDINAL))->format($day); //25th
+        //$year = $date->format('Y');
+        //return "$month $day, $year"; //April 25th, 2020
 
-        return "$month $day, $year"; //April 25th, 2020
+        return $date->format('F jS, Y'); //April 25th, 2020
     }
 
     /**

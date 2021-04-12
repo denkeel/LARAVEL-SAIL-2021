@@ -25,7 +25,7 @@ class NewsSeeder extends Seeder
         for ($i=0; $i < 3; $i++) { 
             $data[] = [
                 'heading' => $faker->sentence(mt_rand(3, 10)),
-                'content' => $faker->text(mt_rand(100, 300)),
+                'content' => $faker->text(mt_rand(1000, 3000)),
                 'author' => $faker->name(),
                 'category' => 'Ca' . $faker->word(1),
                 'date' => $faker->iso8601($min = 'now'), 

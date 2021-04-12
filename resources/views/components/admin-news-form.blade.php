@@ -3,11 +3,10 @@
     {{ method_field($method  ?? '') }}
     <div class="flex flex-col">
         <label class="font-bold text-lg mb-2" for="category">Category</label>
-        <select class="focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent w-4/12 shadow-sm rounded-md p-3" name="category">
-            {{-- Supplement an id here instead of using 'name' --}}
-            <option class="" value="value1">Category 1</option>
-            <option class="" value="value2">Category 2</option>
-            <option class="" value="value3">Category 3</option>
+        <select class="bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent w-4/12 shadow-sm rounded-md p-3" name="category">
+            @foreach($categories as $category)
+            <option value="{{ $category['name'] }}">{{ $category['name'] }}</option>
+            @endforeach
         </select>
     </div>
     <div class="flex flex-col">

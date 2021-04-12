@@ -6,9 +6,10 @@
     <div class="flex">
         <aside class="h-screen w-80 shadow-xl">
             <div class="h-full flex flex-col">
-                <a class="bg-gray-900 hover:bg-gray-800 py-12" href="{{ route('admin') }}">
+                <a class="bg-blue-700 py-6 hover:bg-blue-800" href="{{ route('index') }}">
                     <div class="flex justify-center items-center flex-col ">
-                        <p class="text-3xl font-bold text-white">Admin Panel</p>
+                    <img class="h-24 mb-3" src="https://www.pikpng.com/pngl/b/340-3403187_tc-logo-white-techcrunch-logo-white-transparent-clipart.png" alt="" srcset="">
+                         <p class="text-md text-white">Main Website</p> 
                     </div>
                 </a>
                 <div class="w-full bg-blue-700 flex-grow">
@@ -28,7 +29,7 @@
         </aside>
         <div class="w-full flex flex-col h-screen overflow-y-hidden">
             <div class="shadow-md bg-white w-full py-8 px-4 z-10"></div>
-            <div class="h-full overflow-y-auto p-10 bg-gray-50">
+            <div class="transition-all h-full overflow-y-auto p-10 bg-gray-50">
                 <h2 class="text-3xl font-bold mb-6">@yield('title')</h2>
                 @yield('content')
             </div>

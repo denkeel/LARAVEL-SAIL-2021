@@ -1,5 +1,5 @@
 function remove(event, path) {
-    event.currentTarget.parentElement.remove();
+    //event.currentTarget.parentElement.remove();
 
     httpRequest = new XMLHttpRequest();
     csrf = document.querySelector('meta[name="csrf-token"]').content;

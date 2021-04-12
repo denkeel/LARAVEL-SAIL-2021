@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Jenssegers\Mongodb\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
 class News extends Model
@@ -11,9 +11,12 @@ class News extends Model
     use HasFactory;
 
     protected $tableName = 'news';
+    //protected $collection = 'news';
+    
+    protected $fillable = ['heading', 'category', 'content', 'author'];
 
     public function getNews() {
-        return DB::collection($this->tableName)->get();
+        return DB::collection($this->tableName)->orderBy('_id', 'desc')->get();
     }
     
     public function getNewsById(string $id) {
