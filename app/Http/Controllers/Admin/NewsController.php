@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\NewsStore;
 use App\Models\Category;
 use App\Models\News;
 use DateTime;
@@ -41,23 +42,12 @@ class NewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(NewsStore $request)
     {
-        //$article = array_slice($request->all(), 2);
-        $article = $request->all();
+        $article = $request->validated();
         $article['author'] = 'Unknown';
 
-        //$date = date_create('now', timezone_open('Europe/Moscow'));
-        //$dateIso8601 = $date->format(DateTime::ISO8601);
-
-        //$newsOne['date'] = $dateIso8601;
-        //dd($article);
-        News::create([
-            'heading' => $article['heading'],
-            'category' => $article['category'],
-            'content' => $article['content'],
-            'author' => $article['author']
-        ]);
+        News::create($article);
 
         return redirect()->route('admin/news/create');
     }
