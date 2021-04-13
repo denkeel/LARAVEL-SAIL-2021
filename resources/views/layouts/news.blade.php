@@ -40,7 +40,7 @@
             </div>
         </div>
     </nav>
-
+    
     <div class="container mx-auto flex flex-wrap py-6">
 
         @yield('content')

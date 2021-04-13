@@ -15,7 +15,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $categories = (new Category())->getCategories();
+        $categories = (Category::all());
 
         return view('admin/categories/index', ['categories' => $categories]);
     }
@@ -38,9 +38,7 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        $category = ['name' => $request->category];
-        //dd($category);
-        (new Category())->insertCategory($category);
+        Category::create(['name' => $request->category]);
 
         return redirect()->route('admin/categories/index');
     }
@@ -75,8 +73,12 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $category = ['name' => $request->header('name')];
+
+        Category::where('_id', $id)->update($category);
+
         return response()->json([
-            'updated' => $id,
+            'updated' => $request->all,
         ]);
     }
 
@@ -88,7 +90,7 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        (new Category())->destroyCategoryById($id);
+        Category::where('_id', $id)->delete();
 
         return response()->json([
             'deleted' => $id,

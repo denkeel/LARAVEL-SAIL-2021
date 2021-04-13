@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\News;
 use DateTime;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $articles = (new News())->getNews();
+        $articles = (News::all());
 
         return view('admin/news/index', ['articles' => $articles]);
     }
@@ -29,7 +30,9 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view('admin/news/create');
+        $categories = (Category::all());
+
+        return view('admin/news/create', ['categories' => $categories]);
     }
 
     /**
@@ -40,15 +43,21 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        $newsOne = array_slice($request->all(), 2);
-        $newsOne['author'] = 'Unknown';
+        //$article = array_slice($request->all(), 2);
+        $article = $request->all();
+        $article['author'] = 'Unknown';
 
-        $date = date_create('now', timezone_open('Europe/Moscow'));
-        $dateIso8601 = $date->format(DateTime::ISO8601);
+        //$date = date_create('now', timezone_open('Europe/Moscow'));
+        //$dateIso8601 = $date->format(DateTime::ISO8601);
 
-        $newsOne['date'] = $dateIso8601;
-
-        (new News())->insertNewsById($newsOne);
+        //$newsOne['date'] = $dateIso8601;
+        //dd($article);
+        News::create([
+            'heading' => $article['heading'],
+            'category' => $article['category'],
+            'content' => $article['content'],
+            'author' => $article['author']
+        ]);
 
         return redirect()->route('admin/news/create');
     }
@@ -72,9 +81,10 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        $article = (new News())->getNewsById($id);
+        $article = (News::find($id));
+        $categories = (Category::all());
 
-        return view('admin/news/edit', ['article' => $article]);
+        return view('admin/news/edit', ['article' => $article], ['categories' => $categories]);
     }
 
     /**
@@ -86,16 +96,16 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $newsOne = array_slice($request->all(), 2);
-        $newsOne['author'] = 'Unknown';
+        $article = array_slice($request->all(), 2);
+        $article['author'] = 'Unknown';
 
-        (new News())->updateNewsById($id, $newsOne);
-
+        News::where('_id', $id)->update($article);
+        
         $request->session()->flash('done', true);
-
+        
         return redirect()->route('admin/news/edit', ['id' => $id]);
     }
-
+    
     /**
      * Remove the specified resource from storage.
      *
@@ -104,7 +114,7 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        (new News())->destroyNewsById($id);
+        News::where('_id', $id)->delete();
 
         return response()->json([
             'deleted' => $id,

@@ -16,8 +16,8 @@ class NewsController extends Controller
     public function index()
     {
         //dd(date_default_timezone_get());
-        $articles = (new News())->getNews();
-        $categories = (new Category())->getCategories();
+        $articles = (News::all());
+        $categories = (Category::all());
 
         return view('news/index', ['articles' => $articles], ['categories' => $categories]);
     }
@@ -51,8 +51,8 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        $article = (new News())->getNewsById($id);
-        $categories = (new Category())->getCategories();
+        $article = (News::find($id));
+        $categories = (Category::all());
 
         return view('news/article', ['article' => $article], ['categories' => $categories]);
     }

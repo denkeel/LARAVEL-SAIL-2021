@@ -11,12 +11,12 @@
     <a href=" {{ route('news/article', ['id' => $article['_id']]) }} " class="hover:opacity-75">
       <img class="rounded-t-xl" src="https://source.unsplash.com/collection/1346951/1000x500?sig=1">
     </a>
-    <div class="flex flex-col justify-start p-6">
+    <div class="flex flex-col justify-start p-10">
       <a href="#" class="text-blue-700 text-sm font-bold uppercase pb-4">{{ $article['category']}}</a>
       <a href=" {{ route('news/article', ['id' => $article['_id']]) }} " class="text-3xl font-bold hover:text-gray-700 pb-4">{{ $article['heading']}}</a>
       <p href="#" class="text-sm pb-3">
-        By <a href="#" class="font-semibold hover:text-gray-800">{{ $article['author'] }}</a>, Published on
-        <x-readable-date-c :dateIso8601="$article['date']" />
+        By <a href="#" class="font-semibold hover:text-gray-800">{{ $article['author'] }}</a>, Published on {{ $article['created_at']->format('F jS, Y') }}
+        {{-- <x-readable-date-c :date="$article['created_at']" />--}} 
       </p>
       <a href=" {{ route('news/article', ['id' => $article['_id']]) }} " class="pb-6">{{ $article['content']}}</a>
       <a href=" {{ route('news/article', ['id' => $article['_id']]) }} " class="uppercase text-gray-800 hover:text-black">Continue Reading <i class="ml-1 fas fa-arrow-right"></i></a>
