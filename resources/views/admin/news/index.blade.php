@@ -15,10 +15,10 @@
         <div class="">
             <div class="text-2xl font-bold text-md mb-3">{{ $article['heading'] }}</div>
             <div class="text-sm mb-6">{{ mb_substr($article['content'], 0, 800) . '...' }}</div>
-            <a class="underline hover:bg-gray-800 rounded py-1 hover:text-white px-2" href="{{ route('admin/news/edit', ['id' => $article['_id']]) }}">Edit...</a>
+            <a class="underline hover:bg-gray-800 rounded py-1 hover:text-white px-2" href="{{ route('admin/news/edit', ['article' => $article['_id']]) }}">Edit...</a>
         </div>
     </div>
-    <a href="#" @click="isShowing = false; remove(event, '{{ route('admin/news/destroy', ['id' => $article['_id']]) }}')" onclick="" class="flex flex-col justify-center bg-gray-50 hover:bg-red-500 rounded-r-3xl items-center py-7 px-11 text-red-600 hover:text-white">
+    <a href="#" @click="isShowing = false; remove(event, '{{ route('admin/news/destroy', ['article' => $article['_id']]) }}')" onclick="" class="flex flex-col justify-center bg-gray-50 hover:bg-red-500 rounded-r-3xl items-center py-7 px-11 text-red-600 hover:text-white">
         <i class="text-lg mb-1 fas fa-trash-alt"></i>
         <p class="text-md">Delete</p>
     </a>

@@ -11,27 +11,31 @@ class News extends Model
     use HasFactory;
 
     protected $tableName = 'news';
-    //protected $collection = 'news';
-    
+
     protected $fillable = ['heading', 'category', 'content', 'author'];
 
-    public function getNews() {
+    public function getNews()
+    {
         return DB::collection($this->tableName)->orderBy('_id', 'desc')->get();
     }
-    
-    public function getNewsById(string $id) {
+
+    public function getNewsById(string $id)
+    {
         return DB::collection($this->tableName)->find($id);
     }
 
-    public function insertNewsById($newsOne) {
+    public function insertNewsById($newsOne)
+    {
         return DB::collection($this->tableName)->insert($newsOne);
     }
 
-    public function updateNewsById(string $id, $newsOne) {
+    public function updateNewsById(string $id, $newsOne)
+    {
         return DB::collection($this->tableName)->where('_id', $id)->update($newsOne);;
     }
 
-    public function destroyNewsById(string $id) {
+    public function destroyNewsById(string $id)
+    {
         return DB::collection($this->tableName)->where('_id', $id)->delete();
     }
 }
