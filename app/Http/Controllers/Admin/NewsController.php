@@ -99,7 +99,7 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(News $article)
+    public function destroyAjax(News $article)
     {
         $article->delete();
 

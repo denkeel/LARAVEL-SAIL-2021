@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoryStore;
+use App\Http\Requests\CategoryUpdate;
 use App\Models\Category;
-use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
 {
@@ -21,79 +22,60 @@ class CategoriesController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryStore $request)
     {
-        Category::create(['name' => $request->category]);
-
-        return redirect()->route('admin/categories/index');
+        $category = Category::create($request->validated());
+        
+        if ($category) {
+            
+            return redirect()->route('admin/categories/index');
+        }
+        
+        return back()->withErrors(['Наш сайт сломался. Мы уже решаем эту проблему. Попробуйте зайти через несколько часов']);
     }
+    
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
+     * AJAX
+     * 
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updateAjax(CategoryUpdate $request, Category $category) 
     {
-        $category = ['name' => $request->header('name')];
+        $categoryUpdated = $request->validated();
+        dd($request);
 
-        Category::where('_id', $id)->update($category);
+        $category->fill($categoryUpdated)->save();
 
         return response()->json([
-            'updated' => $request->all,
+            'updated' => true,
+            'id' => $category->id,
         ]);
     }
 
     /**
+     * AJAX
+     * 
      * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroyAjax(Category $category)
     {
-        Category::where('_id', $id)->delete();
+        $category->delete();
 
         return response()->json([
-            'deleted' => $id,
+            'deleted' => true,
+            'id' => $category->id,
         ]);
     }
 }

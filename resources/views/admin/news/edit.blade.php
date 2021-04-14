@@ -3,11 +3,7 @@
 @section('content')
 @section('title', 'Editing')
 
-@if($errors->any())
-@foreach($errors->all() as $error)
-<div class="rounded-xl text-lg mb-4 p-4 ring-4 text-white bg-red-500 ring-red-200"><i class="mr-2 fas fa-times"></i>{{ $error }}</div>
-@endforeach
-@endif
+<x-error-list :errors="$errors"/>
 
 @if (session('done'))
 <div class="rounded-xl text-lg p-4 ring-4 text-white bg-green-500 ring-green-200"><i class="mr-2 fas fa-check"></i>All changes are saved.</div>
