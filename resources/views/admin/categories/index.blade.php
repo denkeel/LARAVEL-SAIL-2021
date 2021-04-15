@@ -11,6 +11,10 @@
 
 <x-error-list :errors="$errors" />
 
+<template x-for="error in list" :key="error">
+    <div class="flex items-center rounded-xl text-lg mb-4 p-4 ring-4 text-white bg-red-500 ring-red-200"><i class="mr-2 fas fa-times"></i><p x-text="error"></p></div>
+</template>
+
 <form action="{{ route('admin/categories/store') }}" method="POST" class="flex w-min shadow-sm rounded-3xl mb-5 py-3 px-4">
     @csrf
     <div class="flex flex-row justify-center items-center">
@@ -28,7 +32,7 @@
 
         <p @dblclick="isShowing = true" x-ref="editP" x-show="!isShowing" class="text-md font-bold">{{ $category['name'] }}</p> {{----}}
 
-        <form $refs.editInput.value=$refs.editP.innerHTML" x-show="isShowing" class="flex ml-1.5" @submit.prevent="$refs.editP.innerHTML = $refs.editInput.value;isShowing = false; edit('{{ route('admin/categories/update', ['category' => $category['_id']]) }}', $refs.editInput.value)">
+        <form $refs.editInput.value=$refs.editP.innerHTML" x-show="isShowing" style="display: none;" class="flex ml-1.5" @submit.prevent="$refs.editP.innerHTML = $refs.editInput.value;isShowing = false; edit('{{ route('admin/categories/update', ['category' => $category['_id']]) }}', $refs.editInput.value)">
             {{ method_field('PUT') }}
             <input type="hidden" name="_method" value="AJAX">
             <div class="flex flex-row justify-center items-center">

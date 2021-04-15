@@ -24,7 +24,7 @@ class CategoryUpdate extends FormRequest
     public function rules()
     {
         return [
-            "name" => ["required", "min:2"]
+            "name" => ["min:1"]
         ];
     }
 }

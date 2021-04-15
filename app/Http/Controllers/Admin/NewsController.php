@@ -52,7 +52,7 @@ class NewsController extends Controller
 
         if ($article) {
 
-            return redirect()->route('admin/news/create');
+            return redirect()->route('admin');
         }
         
         return back()->withErrors(['Наш сайт сломался. Мы уже решаем эту проблему. Попробуйте зайти через несколько часов']);

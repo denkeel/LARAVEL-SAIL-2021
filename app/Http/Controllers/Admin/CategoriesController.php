@@ -51,7 +51,6 @@ class CategoriesController extends Controller
     public function updateAjax(CategoryUpdate $request, Category $category) 
     {
         $categoryUpdated = $request->validated();
-        dd($request);
 
         $category->fill($categoryUpdated)->save();
 

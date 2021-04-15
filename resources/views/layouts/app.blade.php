@@ -25,15 +25,20 @@
   @stack('js')
 
   <!-- Font Awesome -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous" defer></script>
+  <script src="{{ asset('js/font-awesome.5.13.0.all.min.js') }}" defer></script>
 
   <!-- AlpineJS -->
   <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-
+  <script>
+    const errors = {
+      list: [],
+      lastUpdate: Date.now()
+    }
+  </script>
   <!-- jQuery
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   -->
-  
+
   <!-- Axios 
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   -->

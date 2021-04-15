@@ -1,7 +1,7 @@
 @extends('layouts/dashboard')
 
 @push('js')
-<script src="{{ asset('js/delete.js') }}" defer></script>
+<script src="{{ asset('js/news/delete.js') }}" defer></script>
 @endpush
 
 @section('content')
