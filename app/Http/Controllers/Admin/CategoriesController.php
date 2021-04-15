@@ -36,7 +36,7 @@ class CategoriesController extends Controller
             return redirect()->route('admin/categories/index');
         }
         
-        return back()->withErrors(['Наш сайт сломался. Мы уже решаем эту проблему. Попробуйте зайти через несколько часов']);
+        return back()->withErrors(__('messages.admin.categories.fail'));
     }
     
     /**
