@@ -14,7 +14,7 @@
             <a href="#" class="text-blue-700 text-sm font-bold uppercase pb-4">{{ $article['category'] }}</a>
             <p class="text-3xl font-bold pb-4"> {{ $article['heading'] }} </p>
             <p href="#" class="text-sm pb-8">
-                By <a href="#" class="font-semibold hover:text-gray-800">{{ $article['author'] }}</a>, Published on <x-readable-date-c :dateIso8601="$article['date']"/>
+                By <a href="#" class="font-semibold hover:text-gray-800">{{ $article['author'] }}</a>, Published on <x-readable-date-c :date="$article['created_at']"/>
             </p>
             {{-- <h1class="text-2xlfont-boldpb-3">Introduction</h1> --}}
             <p class="pb-3">{{ $article['content'] }}</p>

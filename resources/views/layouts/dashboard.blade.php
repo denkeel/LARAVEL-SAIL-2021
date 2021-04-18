@@ -8,8 +8,8 @@
             <div class="h-full flex flex-col">
                 <a class="bg-blue-700 py-6 hover:bg-blue-800" href="{{ route('index') }}">
                     <div class="flex justify-center items-center flex-col ">
-                    <img class="h-24 mb-3" src="https://www.pikpng.com/pngl/b/340-3403187_tc-logo-white-techcrunch-logo-white-transparent-clipart.png" alt="" srcset="">
-                         <p class="text-md text-white">Main Website</p> 
+                        <img class="h-24 mb-3" src="https://www.pikpng.com/pngl/b/340-3403187_tc-logo-white-techcrunch-logo-white-transparent-clipart.png" alt="" srcset="">
+                        <p class="text-md text-white">Main Website</p>
                     </div>
                 </a>
                 <div class="w-full bg-blue-700 flex-grow">
@@ -28,8 +28,19 @@
             </div>
         </aside>
         <div class="w-full flex flex-col h-screen overflow-y-hidden">
-            <div class="shadow-md bg-white w-full py-8 px-4 z-10"></div>
-            <div x-data="errors" x-on:errors-load.window="lastUpdate = $event"  class="main-container transition-all h-full overflow-y-auto p-10 bg-gray-50">
+            <div class="flex justify-end space-x-2 shadow-md bg-white py-8 px-8 z-10">
+                <p class="hover:text-gray-600 font-bold" href="{{ route('logout') }}">{{ Auth::user()->name }}</p>
+                <p class="hover:text-gray-600" href="{{ route('logout') }}">|</p>
+
+                <form x-data="" x-ref="form" method="POST" action="{{ route('logout') }}">
+                    @csrf
+
+                    <p @click="$refs.form.submit()" class="hover:text-gray-600">Log out</p>
+
+                </form>
+            </div>
+
+            <div x-data="errors" x-on:errors-load.window="lastUpdate = $event" class="main-container transition-all h-full overflow-y-auto p-10 bg-gray-50">
                 <h2 class="text-3xl font-bold mb-6">@yield('title')</h2>
                 @yield('content')
             </div>

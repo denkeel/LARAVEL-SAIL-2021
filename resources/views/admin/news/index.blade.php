@@ -1,13 +1,13 @@
 @extends('layouts/dashboard')
 
 @push('js')
-<script src="{{ asset('js/news/delete.js') }}" defer></script>
+<script src="{{ asset('js/admin/news/delete.js') }}" defer></script>
 @endpush
 
 @section('content')
 @section('title', 'News')
 @foreach ($articles as $article)
-<div x-data="{ isShowing: true }" x-show.transition.duration.800ms="isShowing" class="flex shadow-md justify-between rounded-3xl mb-4">
+<div x-data="{ isShowing: true }" x-show.transition.duration.800ms="isShowing" class="flex shadow-md bg-white justify-between rounded-3xl mb-4">
     <div class="flex p-7 flex-row">
         <div class="flex-shrink-0 w-32 h-32 mr-6">
             <img class="min-h-full min-w-full object-cover rounded-xl" src="{{-- asset('/img/news.jfif') --}}https://source.unsplash.com/200x200?sig={{ $loop->iteration }}" alt="">
@@ -18,7 +18,7 @@
             <a class="underline hover:bg-gray-800 rounded py-1 hover:text-white px-2" href="{{ route('admin/news/edit', ['article' => $article['_id']]) }}">Edit...</a>
         </div>
     </div>
-    <a href="#" @click="isShowing = false; remove(event, '{{ route('admin/news/destroy', ['article' => $article['_id']]) }}')" onclick="" class="flex flex-col justify-center bg-gray-50 hover:bg-red-500 rounded-r-3xl items-center py-7 px-11 text-red-600 hover:text-white">
+    <a href="#" @click="isShowing = false; remove(event, '{{ route('admin/news/destroy', ['article' => $article['_id']]) }}')" onclick="" class="flex flex-col justify-center hover:bg-red-500 rounded-r-3xl items-center py-7 px-11 text-red-600 hover:text-white">
         <i class="text-lg mb-1 fas fa-trash-alt"></i>
         <p class="text-md">Delete</p>
     </a>

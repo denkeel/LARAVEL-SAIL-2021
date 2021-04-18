@@ -40,6 +40,6 @@ class readableDate extends Component
      */
     public function render()
     {
-        return view('components.readable-date');
+        return view('components/readable-date');
     }
 }
