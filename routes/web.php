@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\Admin\NewsController as Admin_NewsController;
 use App\Http\Controllers\Admin\CategoriesController as Admin_CategoriesController;
+use App\Http\Controllers\Admin\UsersManagingController as Admin_UsersManagingController;
 use App\Models\User;
 
 /*
@@ -44,6 +45,15 @@ Route::group(['prefix' => 'admin/categories', 'as' => 'admin/categories/', 'midd
     Route::post('/', [Admin_CategoriesController::class, 'store'])->name('store');
     Route::put('/{category}', [Admin_CategoriesController::class, 'updateAjax'])->name('update');
     Route::delete('/{category}', [Admin_CategoriesController::class, 'destroyAjax'])->name('destroy');
+});
+
+Route::group(['prefix' => 'admin/users', 'as' => 'admin/users/', 'middleware' => 'auth'], function () {
+    Route::get('/', [Admin_UsersManagingController::class, 'index'])->name('index');
+    Route::post('/', [Admin_UsersManagingController::class, 'store'])->name('store');
+    Route::put('/{user}', [Admin_UsersManagingController::class, 'updateAjax'])->middleware(['admin'])->name('update');
+    Route::delete('/{user}', [Admin_UsersManagingController::class, 'destroyAjax'])->middleware(['admin'])->name('destroy');
+    Route::get('/op/{user}', [Admin_UsersManagingController::class, 'op'])->middleware(['admin'])->name('op');
+    Route::get('/deop/{user}', [Admin_UsersManagingController::class, 'deop'])->middleware(['admin'])->name('deop');
 });
 
 Route::get('admin', function () {

@@ -23,6 +23,9 @@
                         <a href="{{ route('admin/categories/index') }}">
                             <div class="hover:bg-blue-800 active:bg-blue-900 flex text-lg h-14 @if(request()->routeIs('admin/categories/*')) bg-blue-900 @endif text-white font-bold items-center pl-7 ">Category</div>
                         </a>
+                        <a href="{{ route('admin/users/index') }}">
+                            <div class="hover:bg-blue-800 active:bg-blue-900 flex text-lg h-14 @if(request()->routeIs('admin/users/*')) bg-blue-900 @endif text-white font-bold items-center pl-7 ">Users</div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -35,7 +38,7 @@
                 <form x-data="" x-ref="form" method="POST" action="{{ route('logout') }}">
                     @csrf
 
-                    <p @click="$refs.form.submit()" class="hover:text-gray-600">Log out</p>
+                    <p @click="$refs.form.submit()" class="hover:text-gray-600 cursor-pointer">Log out</p>
 
                 </form>
             </div>
