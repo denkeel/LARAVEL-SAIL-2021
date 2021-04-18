@@ -5,7 +5,7 @@
         <label class="font-bold text-lg mb-2" for="category">Category</label>
         <select class="bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent w-4/12 shadow-sm rounded-md p-3" name="category">
             @foreach($categories as $category)
-            <option value="{{ $category['name'] }}">{{ $category['name'] }}</option>
+            <option value="{{ $category['name'] }}" @if((isset($articleCategory)) && ($category['name'] === $articleCategory)) selected @endif>{{ $category['name'] }}</option>
             @endforeach
         </select>
     </div>

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\NewsStore;
+use App\Http\Requests\NewsUpdate;
 use App\Models\Category;
 use App\Models\News;
 use DateTime;
@@ -41,36 +43,19 @@ class NewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(NewsStore $request)
     {
-        //$article = array_slice($request->all(), 2);
-        $article = $request->all();
-        $article['author'] = 'Unknown';
+        $article = $request->validated();
+        $article['author'] = NULL;
 
-        //$date = date_create('now', timezone_open('Europe/Moscow'));
-        //$dateIso8601 = $date->format(DateTime::ISO8601);
+        $article = News::create($article);
 
-        //$newsOne['date'] = $dateIso8601;
-        //dd($article);
-        News::create([
-            'heading' => $article['heading'],
-            'category' => $article['category'],
-            'content' => $article['content'],
-            'author' => $article['author']
-        ]);
+        if ($article) {
 
-        return redirect()->route('admin/news/create');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+            return redirect()->route('admin');
+        }
+        
+        return back()->withErrors(['Наш сайт сломался. Мы уже решаем эту проблему. Попробуйте зайти через несколько часов']);
     }
 
     /**
@@ -79,12 +64,11 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(News $article)
     {
-        $article = (News::find($id));
         $categories = (Category::all());
 
-        return view('admin/news/edit', ['article' => $article], ['categories' => $categories]);
+        return view('admin/news/edit', ['article' => $article, 'categories' => $categories]);
     }
 
     /**
@@ -94,30 +78,34 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(NewsUpdate $request, News $article)
     {
-        $article = array_slice($request->all(), 2);
-        $article['author'] = 'Unknown';
+        $updatedArticle = $request->validated();
+        $updatedArticle['author'] = NULL;
 
-        News::where('_id', $id)->update($article);
-        
-        $request->session()->flash('done', true);
-        
-        return redirect()->route('admin/news/edit', ['id' => $id]);
+        $article->fill($updatedArticle)->save();
+
+        if ($article) {
+
+            return redirect()->back()->with('done', true);
+        }
+
+        return back()->withErrors(['Наш сайт сломался. Мы уже решаем эту проблему. Попробуйте зайти через несколько часов']);
     }
-    
+
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroyAjax(News $article)
     {
-        News::where('_id', $id)->delete();
+        $article->delete();
 
         return response()->json([
-            'deleted' => $id,
+            'deleted' => true,
+            'id' => $article->id,
         ]);
     }
 }

@@ -28,16 +28,16 @@ Route::group(['prefix' => 'admin/news', 'as' => 'admin/news/'], function () {
     Route::get('/', [Admin_NewsController::class, 'index'])->name('index');
     Route::get('/create', [Admin_NewsController::class, 'create'])->name('create');
     Route::post('/', [Admin_NewsController::class, 'store'])->name('store');
-    Route::delete('/{id}', [Admin_NewsController::class, 'destroy'])->name('destroy');
-    Route::put('/{id}', [Admin_NewsController::class, 'update'])->name('update');
-    Route::get('/{id}/edit', [Admin_NewsController::class, 'edit'])->name('edit');
+    Route::delete('/{article}', [Admin_NewsController::class, 'destroyAjax'])->name('destroy');
+    Route::put('/{article}', [Admin_NewsController::class, 'update'])->name('update');
+    Route::get('/{article}/edit', [Admin_NewsController::class, 'edit'])->name('edit');
 });
 
 Route::group(['prefix' => 'admin/categories', 'as' => 'admin/categories/'], function () {
     Route::get('/', [Admin_CategoriesController::class, 'index'])->name('index');
     Route::post('/', [Admin_CategoriesController::class, 'store'])->name('store');
-    Route::put('/{id}', [Admin_CategoriesController::class, 'update'])->name('update');
-    Route::delete('/{id}', [Admin_CategoriesController::class, 'destroy'])->name('destroy');
+    Route::put('/{category}', [Admin_CategoriesController::class, 'updateAjax'])->name('update');
+    Route::delete('/{category}', [Admin_CategoriesController::class, 'destroyAjax'])->name('destroy');
 });
 
 Route::get('admin', function () {

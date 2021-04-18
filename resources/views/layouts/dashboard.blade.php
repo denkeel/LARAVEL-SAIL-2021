@@ -29,7 +29,7 @@
         </aside>
         <div class="w-full flex flex-col h-screen overflow-y-hidden">
             <div class="shadow-md bg-white w-full py-8 px-4 z-10"></div>
-            <div class="transition-all h-full overflow-y-auto p-10 bg-gray-50">
+            <div x-data="errors" x-on:errors-load.window="lastUpdate = $event"  class="main-container transition-all h-full overflow-y-auto p-10 bg-gray-50">
                 <h2 class="text-3xl font-bold mb-6">@yield('title')</h2>
                 @yield('content')
             </div>
