@@ -20,7 +20,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $articles = (News::all());
+        $articles = (News::orderBy('_id', 'desc')->get());
 
         return view('admin/news/index', ['articles' => $articles]);
     }
@@ -32,7 +32,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        $categories = (Category::all());
+        $categories = (Category::orderBy('_id', 'desc')->get());
 
         return view('admin/news/create', ['categories' => $categories]);
     }
@@ -66,7 +66,7 @@ class NewsController extends Controller
      */
     public function edit(News $article)
     {
-        $categories = (Category::all());
+        $categories = (Category::orderBy('_id', 'desc')->get());
 
         return view('admin/news/edit', ['article' => $article, 'categories' => $categories]);
     }

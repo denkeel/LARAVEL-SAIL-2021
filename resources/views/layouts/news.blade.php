@@ -4,26 +4,6 @@
 
 <body class="bg-white font-family-karla">
 
-
-    <!-- Text Header -->
-    {{--<header class="w-full container mx-auto">
-        <div class="flex flex-col items-center py-12">
-            <a href="{{ route('news') }}">
-    <div class="flex flex-row justify-center h-10">
-        <img class="pr-2" src="{{ asset('img/logo1.svg') }}" alt="" srcset="">
-        <img class="py-2" src="{{ asset('img/logo2.svg') }}" alt="" srcset="">
-    </div>
-    </a>
-    <a class="font-bold text-gray-800 uppercase hover:text-gray-700 text-5xl">
-        Minimal Blog
-    </a>
-    <p class="text-lg text-gray-600">
-        Lorem Ipsum Dolor Sit Amet
-    </p>
-    </div>
-    </header>
-    --}}
-
     <!-- Topic Nav -->
     <nav class="w-full shadow bg-gray-50" x-data="{ open: false }">
         <x-site-header />
