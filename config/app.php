@@ -190,6 +190,11 @@ return [
          */
         Facade\Ignition\IgnitionServiceProvider::class,
 
+        /*
+         * VK Auth
+         */
+        SocialiteProviders\Manager\ServiceProvider::class,
+
     ],
 
     /*
