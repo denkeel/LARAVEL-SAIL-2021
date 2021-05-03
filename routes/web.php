@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\NewsController as Admin_NewsController;
 use App\Http\Controllers\Admin\CategoriesController as Admin_CategoriesController;
 use App\Http\Controllers\Admin\UsersManagingController as Admin_UsersManagingController;
 use App\Models\User;
+use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,16 @@ use App\Models\User;
 |
 */
 require __DIR__.'/auth.php';
+
+Route::get('/auth/redirect', function () {
+    return Socialite::driver('vkontakte')->redirect();
+});
+
+Route::get('/auth/callback', function () {
+    $user = Socialite::driver('vkontakte')->user();
+    dump($user);
+    // $user->token
+})->name('THAT-IS-CLEARLY-FUCKING-DEFINED-SOMEHOW');
 
 Route::get('/welcome', function () {
     return view('welcome');
