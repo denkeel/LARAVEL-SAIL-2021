@@ -28,10 +28,12 @@
       list: [],
       lastUpdate: Date.now()
     }
-  </script>
+    </script>
 
 </head>
 
 @yield('body')
+
+@stack('js-bottom')
 
 </html>
