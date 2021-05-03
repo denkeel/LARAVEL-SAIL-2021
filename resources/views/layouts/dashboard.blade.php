@@ -32,7 +32,7 @@
         </aside>
         <div class="w-full flex flex-col h-screen overflow-y-hidden">
             <div class="flex justify-end space-x-2 shadow-md bg-white py-8 px-8 z-10">
-                <p class="hover:text-gray-600 font-bold" href="{{ route('logout') }}">{{ Auth::user()->name }}</p>
+                <p class="font-bold" href="{{ route('logout') }}">{{ Auth::user()->name }}</p>
                 <p class="hover:text-gray-600" href="{{ route('logout') }}">|</p>
 
                 <form x-data="" x-ref="form" method="POST" action="{{ route('logout') }}">

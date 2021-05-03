@@ -16,9 +16,8 @@
       <a href=" {{ route('news/article', ['id' => $article['_id']]) }} " class="text-3xl font-bold hover:text-gray-700 pb-4">{{ $article['heading']}}</a>
       <p href="#" class="text-sm pb-3">
         By <a href="#" class="font-semibold hover:text-gray-800">{{ $article['author'] }}</a>, Published on {{ $article['created_at']->format('F jS, Y') }}
-        {{-- <x-readable-date-c :date="$article['created_at']" />--}} 
       </p>
-      <a href=" {{ route('news/article', ['id' => $article['_id']]) }} " class="pb-6">{{ $article['content']}}</a>
+      <a href=" {{ route('news/article', ['id' => $article['_id']]) }} " class="pb-6">{!! $article['content'] !!}</a>
       <a href=" {{ route('news/article', ['id' => $article['_id']]) }} " class="uppercase text-gray-800 hover:text-black">Continue Reading <i class="ml-1 fas fa-arrow-right"></i></a>
     </div>
   </article>
