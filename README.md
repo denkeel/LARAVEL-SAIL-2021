@@ -12,7 +12,6 @@ This project is a news portal that implements such functionality as:
 - Editing news
 - Deleting news
 - Login/authentication.
-- 
 
 ## Powered by
 
