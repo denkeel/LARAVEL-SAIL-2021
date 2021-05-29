@@ -1,6 +1,6 @@
 # http://denkeel.cf/
 
-## About Project
+## About project
 
 This project is a news portal that implements such functionality as:
 
