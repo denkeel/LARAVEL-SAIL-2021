@@ -1,3 +1,6 @@
+## Deployment
+http://denkeel.cf/
+
 ## About Project
 
 This project is a news portal that implements such functionality as:
@@ -10,8 +13,6 @@ This project is a news portal that implements such functionality as:
 - Deleting news
 - Login/authentication.
 - 
-## Deployment
-http://denkeel.cf/
 
 ## Powered by
 
